@@ -1,0 +1,24 @@
+﻿
+@model Department
+
+<h2>Add New Department</h2>
+
+<form method="post" action="/Department/SaveAdd">
+	
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+
+	</div>
+	<div>
+		<label asp-for="mgrname"></label>
+		<input asp-for="mgrname" class="form-control" />
+		<span asp-validation-for="mgrname" class="text-danger"></span>
+
+	</div>
+
+	<input type="submit" value="Save" class="btn btn-success mt-3" />
+	<a asp-action="index" asp-controller="Department">BackToList</a>
+
+</form>

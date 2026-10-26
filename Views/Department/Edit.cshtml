@@ -1,0 +1,27 @@
+﻿@model Department
+<h1>Edit</h1>
+
+<form method="post" action="/Department/SaveEdit/@Model.Id" style=" color: white">
+	<div>
+		<label asp-for="Id"></label>
+		<input asp-for="Id" class="form-control" />
+	</div>
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+
+	</div>
+	<div>
+		<label asp-for="mgrname"></label>
+		<input asp-for="mgrname" class="form-control" />
+		<span asp-validation-for="mgrname" class="text-danger"></span>
+
+	</div>
+
+	
+
+	<input type="submit" value="Save" class="btn btn-success mt-3" />
+	<a asp-action="index" asp-controller="Department">BackToList</a>
+
+</form>

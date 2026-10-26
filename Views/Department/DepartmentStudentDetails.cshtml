@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "DepartmentStudentDetails";
+}
+
+<h1>DepartmentStudentDetails</h1>
+
+@model DepartmentDetailsViewModel
+
+<h2>Department: @Model.DepartmentName</h2>
+<h3>State: @Model.DepartmentState</h3>
+
+<hr />
+
+<div>
+    <label>Students older than 25 years:</label>
+    <select asp-for="SelectedStudentId" asp-items="Model.StudentsExceeding25">
+        <option value="">-- Select Student --</option>
+    </select>
+</div>
+
+<br />
+<a href="/Department/Index">Back to List</a>

@@ -1,0 +1,14 @@
+﻿@model student
+
+<h1>Delete</h1>
+<h2> Are u sure deelting this ? </h2>
+
+<h3>@Model.Name</h3>
+<h3>@Model.Age</h3>
+
+<form method="Post" action="/student/SaveDelete/@Model.Id">
+	<input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+
+<a href="/Student/Index">Back To List</a>
+

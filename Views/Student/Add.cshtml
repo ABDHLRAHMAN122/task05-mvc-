@@ -1,0 +1,40 @@
+﻿@model studentviewmodel
+<h1>Edit</h1>
+
+<form method="post" action="/student/SaveAdd">
+	
+	<div>
+		<label asp-for="Name" style="color:white"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+
+	</div>
+	<div>
+		<label asp-for="Age" style="color:white"></label>
+		<input asp-for="Age" class="form-control" />
+		<span asp-validation-for="Age" class="text-danger"></span>
+
+	</div>
+	<div>
+		<label asp-for="deptid" style="color:white"></label>
+		<select asp-for="deptid" class="form-control">
+		@foreach (var item in Model.Deptlist)
+		{
+			@if (item.Id == Model.deptid)
+			{
+				<option value="@item.Id" selected>@item.Name</option>
+			}
+			else
+			{
+				<option value="@item.Id">@item.Name</option>
+			}
+		}
+		</select>
+		<span asp-validation-for="deptid" class="text-danger" style="color:red"></span>
+
+	</div>
+
+	<input type="submit" value="Save" class="btn btn-success mt-3" />
+	<a asp-action="Index" asp-controller="student">BackToList</a>
+
+</form>

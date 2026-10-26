@@ -1,0 +1,79 @@
+﻿@model IEnumerable<student>
+
+<h1 style=" color:aliceblue">Students List</h1>
+
+<!-- نموذج البحث والفلترة -->
+<form method="get" action="/Student/Index" class="row mb-3"style=" color:aliceblue">
+    <div class="col-md-4">
+        <input type="text" name="searchName" style=" color:aliceblue" value="@ViewBag.CurrentSearch" placeholder="Search by name..." class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <select name="deptId" class="form-select">
+            <option value="">-- All Departments --</option>
+            @if (ViewBag.Departments != null)
+            {
+                foreach (var dept in ViewBag.Departments)
+                {
+                    if (dept.Id == ViewBag.CurrentDeptId)
+                    {
+                        <option value="@dept.Id" selected>@dept.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@dept.Id">@dept.Name</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <a href="/Student/Index" class="btn btn-secondary">Reset</a>
+    </div>
+</form>
+
+<a href="/Student/Add" class="btn btn-success mb-3">Add New Student</a>
+
+<!-- جدول عرض البيانات -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr style=" color:aliceblue">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style=" color:aliceblue">
+                <td style=" color:aliceblue">@item.Id</td>
+                <td style=" color:aliceblue">@item.Name</td>
+                <td style=" color:aliceblue">@item.Age</td>
+                <td style=" color:aliceblue">@item.studept?.Name</td>
+                <td>
+                    <a href="/Student/Details/@item.Id" class="btn btn-info btn-sm">Details</a>
+                    <a href="/Student/Edit/@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/Student/Delete/@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- أزرار الـ Pagination -->
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.PageNumber ? "active" : "")">
+                <a class="page-link" 
+                   href="/Student/Index?pageNumber=@i&searchName=@ViewBag.CurrentSearch&deptId=@ViewBag.CurrentDeptId">
+                    @i
+                </a>
+            </li>
+        }
+    </ul>
+</nav>
